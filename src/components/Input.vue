@@ -15,6 +15,14 @@
       required: true
     }
   })
+
+  const validar = () => {
+		if (Object.values(props).includes('')) {
+			return
+		}
+
+		emit('add-task')
+  }
 </script>
 
 <template>
@@ -23,7 +31,7 @@
 
     <form
       class="flex gap-5"
-      @submit.prevent="$emit('add-task')"
+      @submit.prevent="validar"
     >
 
       <input 
