@@ -22,7 +22,8 @@
 			<input 
 				type="checkbox"
 				class="w-[1.25rem]"
-				@change="$emit('handle-checkbox-change', task.id)"
+				@click="$emit('handle-checkbox-change', task.id)"
+				v-model="task.checked"
 			>
 			<button 
 				class="bg-red-950 text-white font-bold w-[2rem] rounded border-1 border-gray-700 cursor-pointer hover:opacity-[.7] duration-250"
