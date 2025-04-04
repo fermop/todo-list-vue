@@ -14,7 +14,13 @@
 		:class="[!task.checked ? 'opacity-[1]' : 'opacity-[.6]']"
 		class="bg-slate-200 dark:bg-slate-800 w-full m-auto p-5 rounded border-1 border-gray-700 my-3 flex gap-5 duration-250">
 
-    <p class="w-full font-semibold text-slate-900 dark:text-gray-300">{{ task.description }}</p>
+		<input 
+			type="text"
+			class="w-full font-semibold text-slate-900 dark:text-gray-300 outline-none"
+			v-model="task.description"
+			>
+			
+    <!-- <p class="w-full font-semibold text-slate-900 dark:text-gray-300">{{ task.description }}</p> -->
 
     <div 
 			class="flex gap-5">
