@@ -1,5 +1,5 @@
 <script setup>
-  import { ref, reactive } from 'vue';
+  import { ref, reactive, watch, onMounted } from 'vue';
   import { uid } from 'uid'
   import Header from './components/Header.vue';
   import Input from './components/Input.vue';
@@ -11,6 +11,24 @@
     description: '',
     checked: null
   })
+
+  watch(tasks, () => {
+   guardarLocalStorage()
+  }, {
+    deep: true
+  })
+
+  onMounted(() => {
+    const tasksStorage = localStorage.getItem('tasks')
+
+    if (tasksStorage) {
+      tasks.value = JSON.parse(tasksStorage)
+    }
+  })
+  
+  const guardarLocalStorage = () => {
+    localStorage.setItem('tasks', JSON.stringify(tasks.value))
+  }
   
   const addTask = () => {
     tasks.value.unshift({
