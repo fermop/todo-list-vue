@@ -5,6 +5,16 @@
   import Input from './components/Input.vue';
   import Task from './components/Task.vue';
 
+  const states = reactive({
+    nightMode: false
+  })
+
+  const toggleNightMode = () => {
+    states.nightMode = !states.nightMode
+    document.body.classList.toggle('dark');
+    localStorage.setItem('dark-mode', states.nightMode)
+  }
+
   const tasks = ref([]);
   const task = reactive({
     id: null,
@@ -23,6 +33,12 @@
 
     if (tasksStorage) {
       tasks.value = JSON.parse(tasksStorage)
+    }
+
+    const isActive = localStorage.getItem('dark-mode') === 'true'
+
+    if (isActive) {
+      toggleNightMode()
     }
   })
   
@@ -52,7 +68,9 @@
 
 <template>
   <div class="w-full m-auto p-5 max-w-5xl">
-    <Header/>
+    <Header
+      @toggle-night-mode="toggleNightMode"
+    />
 
     <Input
       v-model:description="task.description"
