@@ -19,8 +19,6 @@
 			class="w-full font-semibold text-slate-900 dark:text-gray-300 outline-none"
 			v-model="task.description"
 			>
-			
-    <!-- <p class="w-full font-semibold text-slate-900 dark:text-gray-300">{{ task.description }}</p> -->
 
     <div 
 			class="flex gap-5">
