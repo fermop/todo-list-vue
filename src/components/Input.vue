@@ -1,4 +1,9 @@
 <script setup>
+  import { ref } from 'vue'
+  import Alert from './Alert.vue'
+
+  const error = ref(false)
+
   const emit = defineEmits(['update:description', 'update:checked', 'add-task'])
 
   const props = defineProps({
@@ -18,6 +23,10 @@
 
   const validar = () => {
 		if (Object.values(props).includes('')) {
+      error.value = true
+      setTimeout(() => {
+        error.value = false
+      }, 2000);
 			return
 		}
 
@@ -26,6 +35,9 @@
 </script>
 
 <template>
+  <Alert
+    v-if="error"
+  />
   <div class="bg-slate-200 dark:bg-slate-800 w-full m-auto mb-10 p-5 rounded border-1 border-gray-700">
     <h2 class="text-xl text-slate-700 dark:text-white font-bold text-center mb-5">Add task</h2>
 
